@@ -1,19 +1,21 @@
-
 import cv2
-
 from PIL import Image
-image_file = Image.open("test.png") # open colour image
-image_file = image_file.convert('1') # convert image to black and white
-image_file.save('result.png')
+
+
+def convertToBlackAndWhite():
+    image_file = Image.open("test.png") # open colour image
+    image_file = image_file.convert('1') # convert image to black and white
+    image_file.save('result.png')
+    return image_file
 
 
 # Metoda koja se koristi za maskiranje neostrina
-
-image = cv2.imread(r"C:\Users\mali_cox\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\download.jpg")
-gaussian_3 = cv2.GaussianBlur(image, (9,9), 10.0)
-unsharp_image = cv2.addWeighted(image, 1.5, gaussian_3, -0.5, 0, image)
-cv2.imwrite(r"C:\Users\mali_cox\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\EditovaneSlike\unsharp_download.jpg", unsharp_image)
-
+def maskiranje_neostrina():
+    image = cv2.imread(r"C:\Users\mali_cox\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\download.jpg")
+    gaussian_3 = cv2.GaussianBlur(image, (9,9), 10.0)
+    unsharp_image = cv2.addWeighted(image, 1.5, gaussian_3, -0.5, 0, image)
+    cv2.imwrite(r"C:\Users\mali_cox\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\EditovaneSlike\unsharp_download.jpg", unsharp_image)
+    return unsharp_image
 # Metoda za poboljsavanje svjetlosti na slici
 
 def increase_brightness(value=30):
@@ -30,4 +32,8 @@ def increase_brightness(value=30):
     cv2.imwrite('C:/Users/mali_cox/Desktop/POOS_Projekat/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editBrightness.jpg', img)
     return img
 
+# Pozivanje funkcija
+
+
 increase_brightness()
+maskiranje_neostrina()
