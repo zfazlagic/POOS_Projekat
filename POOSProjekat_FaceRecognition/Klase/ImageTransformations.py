@@ -34,7 +34,7 @@ def increase_brightness(value=30):
     return img
 
 #Poboljsavanje kontrasta i ujednacaavnje histograma
-def edit_contrast():
+def clahe():
 #-----Ucitavanje slike-----------------------------------------------------
     img = cv2.imread(r"C:\Users\lusi\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\download.jpg", 1)
     cv2.imshow("img", img)
@@ -61,24 +61,35 @@ def edit_contrast():
 #-----Converting image from LAB Color model to RGB model--------------------
     final = cv2.cvtColor(limg, cv2.COLOR_LAB2BGR)
     cv2.imshow('final', final)
-    cv2.imwrite('C:/Users/lusi/Desktop/POOS_Projekat/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editContrast.jpg', final)
+    cv2.imwrite('C:/Users/lusi/Desktop/POOS_Projekat/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editHistogram.jpg', final)
     return final
 #_____END_____#
 
 #Uklanjanje šuma
 def image_denoise():
 
-    img = cv2.imread(r"C:\Users\lusi\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\Downey.jpg")
+    img = cv2.imread(r"C:\Users\lusi\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\rdj.jpeg")
 
-    blur = cv2.bilateralFilter(img, 9, 75, 75)
+    blur = cv2.bilateralFilter(img, 10, 75, 75)
 
     cv2.imwrite('C:/Users/lusi/Desktop/POOS_Projekat/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/blur.jpg', blur)
     return
 
-# Pozivanje funkcija
+# Poboljšavanje kontrasta
+from PIL import Image, ImageEnhance
+def edit_contrast():
+    image = Image.open(r"C:\Users\lusi\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\download.jpg")
+    scale_value = 2.5
 
+    image = ImageEnhance.Contrast(image).enhance(scale_value)
+    image.save('C:/Users/lusi/Desktop/POOS_Projekat/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editContrast.jpg')
+    return
+
+
+# Pozivanje funkcija
 
 increase_brightness()
 maskiranje_neostrina()
 edit_contrast()
 image_denoise()
+clahe()
