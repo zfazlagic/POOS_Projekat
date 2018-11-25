@@ -32,8 +32,41 @@ def increase_brightness(value=30):
     cv2.imwrite('C:/Users/mali_cox/Desktop/POOS_Projekat/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editBrightness.jpg', img)
     return img
 
+#Poboljsavanje kontrasta i ujednacaavnje histograma
+def edit_contrast():
+#-----Ucitavanje slike-----------------------------------------------------
+    img = cv2.imread(r"C:\Users\mali_cox\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\download.jpg", 1)
+    cv2.imshow("img",img)
+
+#-----Konverzija slike u LAB Color model-----------------------------------
+    lab= cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+    cv2.imshow("lab",lab)
+
+#-----Rastavljanje LAB slike u razlicite kanale-------------------------
+    l, a, b = cv2.split(lab)
+    cv2.imshow('l_channel', l)
+    cv2.imshow('a_channel', a)
+    cv2.imshow('b_channel', b)
+
+#-----Primjena CLAHE za L-kanal-------------------------------------------
+    clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8,8))
+    cl = clahe.apply(l)
+    cv2.imshow('CLAHE output', cl)
+
+#-----Spajanje CLAHE poboljsanog L-channel sa a i b kanalima-----------
+    limg = cv2.merge((cl,a,b))
+    cv2.imshow('limg', limg)
+
+#-----Converting image from LAB Color model to RGB model--------------------
+    final = cv2.cvtColor(limg, cv2.COLOR_LAB2BGR)
+    cv2.imshow('final', final)
+    cv2.imwrite('C:/Users/mali_cox/Desktop/POOS_Projekat/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editContrast.jpg', final)
+    return final
+#_____END_____#
+
 # Pozivanje funkcija
 
 
 increase_brightness()
 maskiranje_neostrina()
+edit_contrast()
