@@ -73,11 +73,11 @@ def clahe():
 
 def image_denoise():
 
-    img = cv2.imread(r"C:\Users\lusi\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\rdj.jpeg")
+    img = cv2.imread(r"..\DataSetPOOS\rdj.jpeg")
 
     blur = cv2.bilateralFilter(img, 10, 75, 75)
 
-    cv2.imwrite('C:/Users/lusi/Desktop/POOS_Projekat/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/blur.jpg', blur)
+    cv2.imwrite('../DataSetPOOS/EditovaneSlike/blur.jpg', blur)
     return
 
 # Poboljšavanje kontrasta
