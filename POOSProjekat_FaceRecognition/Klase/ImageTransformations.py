@@ -1,7 +1,8 @@
 import cv2
 from matplotlib import pyplot as plt
-from PIL import Image
+from PIL import Image, ImageEnhance
 
+#Ukoliko bude potrebno funkcija za konvertovanje slike u boji u B&W
 
 def convertToBlackAndWhite():
     image_file = Image.open("test.png") # open colour image
@@ -11,16 +12,18 @@ def convertToBlackAndWhite():
 
 
 # Metoda koja se koristi za maskiranje neostrina
+
 def maskiranje_neostrina():
-    image = cv2.imread(r"C:\Users\Lusi\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\download.jpg")
+    image = cv2.imread(r"..\DataSetPOOS\download.jpg")
     gaussian_3 = cv2.GaussianBlur(image, (9,9), 10.0)
     unsharp_image = cv2.addWeighted(image, 1.5, gaussian_3, -0.5, 0, image)
-    cv2.imwrite(r"C:\Users\lusi\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\EditovaneSlike\unsharp_download.jpg", unsharp_image)
+    cv2.imwrite(r"..\DataSetPOOS\EditovaneSlike\unsharp_download.jpg", unsharp_image)
     return unsharp_image
+
 # Metoda za poboljsavanje svjetlosti na slici
 
 def increase_brightness(value=30):
-    img = cv2.imread(r"C:\Users\lusi\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\download.jpg");
+    img = cv2.imread(r"..\DataSetPOOS\download.jpg");
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     h, s, v = cv2.split(hsv)
 
@@ -30,13 +33,14 @@ def increase_brightness(value=30):
 
     final_hsv = cv2.merge((h, s, v))
     img = cv2.cvtColor(final_hsv, cv2.COLOR_HSV2BGR)
-    cv2.imwrite('C:/Users/lusi/Desktop/POOS_Projekat/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editBrightness.jpg', img)
+    cv2.imwrite('../DataSetPOOS/EditovaneSlike/editBrightness.jpg', img)
     return img
 
 #Poboljsavanje kontrasta i ujednacaavnje histograma
+
 def clahe():
 #-----Ucitavanje slike-----------------------------------------------------
-    img = cv2.imread(r"C:\Users\lusi\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\download.jpg", 1)
+    img = cv2.imread(r"..\DataSetPOOS\download.jpg", 1)
     cv2.imshow("img", img)
 
 #-----Konverzija slike u LAB Color model-----------------------------------
@@ -58,14 +62,15 @@ def clahe():
     limg = cv2.merge((cl,a,b))
     cv2.imshow('limg', limg)
 
-#-----Converting image from LAB Color model to RGB model--------------------
+#-----Konvertovanje slike iz LAB Color modela u RGB model--------------------
     final = cv2.cvtColor(limg, cv2.COLOR_LAB2BGR)
     cv2.imshow('final', final)
-    cv2.imwrite('C:/Users/lusi/Desktop/POOS_Projekat/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editHistogram.jpg', final)
+    cv2.imwrite('../DataSetPOOS/EditovaneSlike/editHistogram.jpg', final)
     return final
-#_____END_____#
+
 
 #Uklanjanje šuma
+
 def image_denoise():
 
     img = cv2.imread(r"C:\Users\lusi\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\rdj.jpeg")
@@ -76,13 +81,13 @@ def image_denoise():
     return
 
 # Poboljšavanje kontrasta
-from PIL import Image, ImageEnhance
+
 def edit_contrast():
-    image = Image.open(r"C:\Users\lusi\Desktop\POOS_Projekat\POOSProjekat_FaceRecognition\DataSetPOOS\download.jpg")
+    image = Image.open(r"..\DataSetPOOS\download.jpg")
     scale_value = 2.5
 
     image = ImageEnhance.Contrast(image).enhance(scale_value)
-    image.save('C:/Users/lusi/Desktop/POOS_Projekat/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editContrast.jpg')
+    image.save('../DataSetPOOS/EditovaneSlike/editContrast.jpg')
     return
 
 
