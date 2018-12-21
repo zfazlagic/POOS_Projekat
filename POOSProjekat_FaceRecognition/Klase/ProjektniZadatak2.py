@@ -78,7 +78,7 @@ def detect_face(img):
 
     # let's detect multiscale (some images may be closer to camera than others) images
     # Rezultat je lista lica
-    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.03, minNeighbors=6);
+    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.03, minNeighbors=5);
 
     # Slucaj da nije otkriveno lice
     if (len(faces) == 0):
@@ -234,6 +234,7 @@ face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 #face_recognizer = cv2.face.FisherFaceRecognizer_create()
 face_recognizer.train(faces, np.array(labels))
+face_recognizer.save('../trainner/trainner.yml')
 
 # **Did you notice** that instead of passing `labels` vector directly to face recognizer I am first converting it to **numpy** array? This is because OpenCV expects labels vector to be a `numpy` array.
 #
@@ -299,13 +300,13 @@ def predict(test_img):
 print("Predicting images...")
 
 # load test images
-test_img1 = cv2.imread("../test/Robert-Downey-Jr-120109-Sherlock-Holmes-5.jpg")
-test_img2 = cv2.imread("../test/51I5N-2UzhL.jpg")
+# test_img1 = cv2.imread("../test/Robert-Downey-Jr-120109-Sherlock-Holmes-5.jpg")
+# test_img2 = cv2.imread("../test/51I5N-2UzhL.jpg")
 
 # perform a prediction
-predicted_img1 = predict(test_img1)
-predicted_img2 = predict(test_img2)
-print("Prediction complete")
+# predicted_img1 = predict(test_img1)
+# predicted_img2 = predict(test_img2)
+
 
 # display both images
 #cv2.imshow(subjects[1], cv2.resize(predicted_img1, (400, 500)))
@@ -325,9 +326,10 @@ for image_name in images_names:
     #cv2.waitKey(5000)
 
 for slika in slike:
-    cv2.imshow(subjects[0], cv2.resize(slika, (400, 500)))
+    cv2.imshow("Face classified", cv2.resize(slika, (400, 500)))
     cv2.waitKey(0)
 
+print("Prediction complete")
 #cv2.waitKey(0)
 #cv2.destroyAllWindows()
 #cv2.waitKey(1000)
