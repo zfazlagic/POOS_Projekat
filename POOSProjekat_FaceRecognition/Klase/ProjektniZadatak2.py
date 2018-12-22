@@ -1,6 +1,7 @@
 import cv2
 import os
 import numpy as np
+from sklearn.metrics import confusion_matrix
 
 # ### Training Data
 
@@ -26,6 +27,8 @@ import numpy as np
 
 # Moguci slucajevi, odnosno osobe za koje se moze prepoznati lice
 subjects = ["Other", "Robert Downey Jr.", "Angelina Jolie"]
+predicted_subjects = []
+val_subjects = ["Angelina Jolie", "Other", "Angelina Jolie", "Other", "Robert Downey Jr.", "Robert Downey Jr.", "Other", "Angelina Jolie", "Robert Downey Jr."]
 
 
 # ### Prepare training data
@@ -268,57 +271,109 @@ def draw_text(img, text, x, y):
 #
 # Now that we have the drawing functions, we just need to call the face recognizer's `predict(face)` method to test our face recognizer on test images. Following function does the prediction for us.
 
-# In[9]:
+
 
 # this function recognizes the person in image passed
 # and draws a rectangle around detected face with name of the
 # subject
 def predict(test_img):
-    # make a copy of the image as we don't want to chang original image
+    # kopija slike kako se ne bi stetio original
     img = test_img.copy()
-    # detect face from the image
+    # pronalazak lica na slici
     face, rect = detect_face(img)
 
     # predict the image using our face recognizer
-    #FACE_RECOGNIZER VJEROVATNO TREBA EXPORT, I OVU FUNKCIJU CIJELU PREBACITI U DRUGI PY
+    #FACE_RECOGNIZER URAĐEN SA EXPORTOM .save, I OVU FUNKCIJU CIJELU PREBACITI U DRUGI PY
     label, confidence = face_recognizer.predict(face)
     # get name of respective label returned by face recognizer
     label_text = subjects[label]
 
-    # draw a rectangle around face detected
+    # crtanje kocke oko detektovanog lica
     draw_rectangle(img, rect)
-    # draw name of predicted person
+    # ispis imena
     draw_text(img, label_text, rect[0], rect[1] - 5)
+    predicted_subjects.append(label_text)
 
     return img
 
 
-# Now that we have the prediction function well defined, next step is to actually call this function on our test images and display those test images to see if our face recognizer correctly recognized them. So let's do it. This is what we have been waiting for.
-
-# In[10]:
+# Testiranje nad testnim slikama se vrsi pozivajuci funkciju predict
 
 print("Predicting images...")
 
-# load test images
+# load test images (testiranje rucno)
 # test_img1 = cv2.imread("../test/Robert-Downey-Jr-120109-Sherlock-Holmes-5.jpg")
 # test_img2 = cv2.imread("../test/51I5N-2UzhL.jpg")
 
-# perform a prediction
+# Pozivanje funkcije predict (testiranje rucno)
 # predicted_img1 = predict(test_img1)
 # predicted_img2 = predict(test_img2)
 
-
-# display both images
+# Prikaz rezultata
 #cv2.imshow(subjects[1], cv2.resize(predicted_img1, (400, 500)))
 #cv2.imshow(subjects[0], cv2.resize(predicted_img2, (400, 500)))
 
-path = "../test/"
-dirs = os.listdir(path)
-images_names = os.listdir(path)
+##############################
+### TESTIRANJE PERFORMANSI ###
+##############################
+
+def acc(ind, mat):
+    TP = mat[ind][ind]
+    TN = 0
+    ALL = 0
+    for i in range(len(mat[0])):
+        for j in range(len(mat[0])):
+            ALL += mat[i][j]
+            if i == ind or j == ind:
+                continue
+            TN += mat[i][j]
+    return (TP + TN) / ALL
+
+def sens(ind, mat):
+    TP = mat[ind][ind]
+    FN = 0
+    for i in range(len(mat[0])):
+        if i != ind:
+            FN += mat[ind][i]
+    return TP/(TP+FN)
+
+def spec(ind, mat):
+    TN = 0
+    FP = 0
+    for i in range(len(mat[0])):
+        if i == ind:
+            continue
+        for j in range(len(mat[0])):
+            if j == ind:
+                continue
+            TN += mat[i][j]
+        FP += mat[i][ind]
+    return TN/(TN+FP)
+
+
+
+
+
+########
+# Main #
+########
+
+test_path = "../test/"
+dirs = os.listdir(test_path)
+images_names = os.listdir(test_path)
 print(images_names)
 slike = []
+
+#Acc brojPogodaka / Total
+
+brojac = 0
+
+
+
+
+
 for image_name in images_names:
-    image_path = path + "/" + image_name
+    image_path = test_path + "/" + image_name
     image = cv2.imread(image_path)
     predicted_img = predict(image)
     slike.append(predicted_img)
@@ -329,11 +384,37 @@ for slika in slike:
     cv2.imshow("Face classified", cv2.resize(slika, (400, 500)))
     cv2.waitKey(0)
 
+
+for k in range(len(val_subjects)):
+    if val_subjects[k] != predicted_subjects[k]:
+        brojac+=1
+
+
+acc_ukupno = (len(predicted_subjects) - brojac) / len(val_subjects)
+
+predicted = []
+print(predicted_subjects)
+
+
+confusion = confusion_matrix(val_subjects, predicted_subjects)
+#print(confusion)
+for i in range(len(confusion)):
+    print("Class " + str(i) + ": ", end=" ")
+    print("sensitivity: " + str(sens(i, confusion)) + ", specificity: " + str(spec(i, confusion)) + ", accuracy: " + str(acc(i, confusion)))
+
+
 print("Prediction complete")
+
+
+
+
 #cv2.waitKey(0)
 #cv2.destroyAllWindows()
 #cv2.waitKey(1000)
 #cv2.destroyAllWindows()
+
+
+
 
 
 
