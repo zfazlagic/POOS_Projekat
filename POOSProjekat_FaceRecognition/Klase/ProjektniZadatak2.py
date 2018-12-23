@@ -3,7 +3,7 @@ import os
 import numpy as np
 from sklearn.metrics import confusion_matrix
 
-# ### Training Data
+##### Training Data
 
 # Za poboljsanje treba se dodati vise fotografija u DataSet
 # training-data (Organizacija foldera)
@@ -17,25 +17,26 @@ from sklearn.metrics import confusion_matrix
 # |               |-- 12.jpg
 # ```
 #
-# Folder_`test-data`_ sluzi ta testiranje recognizera kasnije nakon treniranja
+# Folder_`test-data`_ sluzi za testiranje recognizera kasnije nakon treniranja
 
 # As OpenCV face recognizer accepts labels as integers so we need to define a mapping between integer labels and persons actual names so below I am defining a mapping of persons integer labels and their respective names.
-#
-# **Note:** As we have not assigned `label 0` to any person so **the mapping for label 0 is empty**.
+
 
 
 
 # Moguci slucajevi, odnosno osobe za koje se moze prepoznati lice
 subjects = ["Other", "Robert Downey Jr.", "Angelina Jolie"]
+# Niz u kojem se cuvaju informacije o prepoznatim licima
 predicted_subjects = []
+# Testni slucajevi (sluzi samo za testiranje)
 val_subjects = ["Angelina Jolie", "Other", "Angelina Jolie", "Other", "Robert Downey Jr.", "Robert Downey Jr.", "Other", "Angelina Jolie", "Robert Downey Jr."]
 
 
-# ### Prepare training data
+# ### Pripremanje podataka
 
 # Potrebno je izvrsiti pripremu podataka jer openCV zahtjeva prilagođene podatke. It accepts two vectors, one vector is of faces of all the persons and the second vector is of integer labels for each face so that when processing a face the face recognizer knows which person that particular face belongs too.
 #
-# For example, if we had 2 persons and 2 images for each person.
+# Slucaj za dvije osobe, koje imaju dvije slike po klasi
 #
 # ```
 # PERSON-1    PERSON-2
@@ -44,9 +45,8 @@ val_subjects = ["Angelina Jolie", "Other", "Angelina Jolie", "Other", "Robert Do
 # img2        img2
 # ```
 #
-# Then the prepare data step will produce following face and label vectors.
+# Potrebno je izdvojiti lica iz navedenih slika i kreirati labele
 #
-# ```
 # FACES                        LABELS
 #
 # person1_img1_face              1
@@ -62,26 +62,20 @@ val_subjects = ["Angelina Jolie", "Other", "Angelina Jolie", "Other", "Robert Do
 # 2. For each subject, extract label number. **Do you remember that our folders have a special naming convention?** Folder names follow the format `sLabel` where `Label` is an integer representing the label we have assigned to that subject. So for example, folder name `s1` means that the subject has label 1, s2 means subject label is 2 and so on. The label extracted in this step is assigned to each face detected in the next step.
 # 3. Read all the images of the subject, detect face from each image.
 # 4. Add each face to faces vector with corresponding subject label (extracted in above step) added to labels vector.
-#
-# **[There should be a visualization for above steps here]**
-
-# Did you read my last article on [face detection](https://www.superdatascience.com/opencv-face-detection/)? No? Then you better do so right now because to detect faces, I am going to use the code from my previous article on [face detection](https://www.superdatascience.com/opencv-face-detection/). So if you have not read it, I encourage you to do so to understand how face detection works and its coding. Below is the same code.
-
-
 
 # Detekcija lica korištenjem OpenCV-a
 
 def detect_face(img):
-    # Slike se pretvaraju u gray-scale .OpenCV detektor radi sa gray-scale slikama
+    # Slike se pretvaraju u gray-scale .OpenCV detektor radi sa gray-scale slikama. U ovom slucaju dodatna poboljasanja nisu koristena jer bi se mogao narusiti kvalitet slike koje su trenutno zadovoljavajuce
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    # Koristenje OpenCV detektora, ovdje se koristi LBP jer je brz
-    # Moze se koristiti Haar koji je sporiji
+    # Koristenje OpenCV detektora, ovdje se koristi LBP jer je brzi
+    # Moze se koristiti i Haar (koji je sporiji)
     face_cascade = cv2.CascadeClassifier('opencv-files/lbpcascade_frontalface.xml')
 
-    # let's detect multiscale (some images may be closer to camera than others) images
+    # Multiscale -- neke slike mogu biti blize kameri nego ostale
     # Rezultat je lista lica
-    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.03, minNeighbors=5);
+    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.03, minNeighbors=6);
 
     # Slucaj da nije otkriveno lice
     if (len(faces) == 0):
@@ -94,75 +88,68 @@ def detect_face(img):
     return gray[y:y + w, x:x + h], faces[0]
 
 
-# I am using OpenCV's **LBP face detector**. On _line 4_, I convert the image to grayscale because most operations in OpenCV are performed in gray scale, then on _line 8_ I load LBP face detector using `cv2.CascadeClassifier` class. After that on _line 12_ I use `cv2.CascadeClassifier` class' `detectMultiScale` method to detect all the faces in the image. on _line 20_, from detected faces I only pick the first face because in one image there will be only one face (under the assumption that there will be only one prominent face). As faces returned by `detectMultiScale` method are actually rectangles (x, y, width, height) and not actual faces images so we have to extract face image area from the main image. So on _line 23_ I extract face area from gray image and return both the face image area and face rectangle.
-
-
-
-
 # Funckija cita slike za treniranje, detektuje lica na svim slikama
 # vraca dvije liste iste duzine gdje jedna lista predstavlja lica a druga labele za lica
+
 def prepare_training_data(data_folder_path):
-    # ------STEP-1--------
-    # get the directories (one directory for each subject) in data folder
+
+    # dohvatanje direktorija -> jedan direktorij za jedan subjekt prepoznavanja
     dirs = os.listdir(data_folder_path)
 
-    # list to hold all subject faces
+    # lista koja sadrzi lica
     faces = []
-    # list to hold labels for all subjects
+    # lista koja sadrzi labele
     labels = []
 
-    # let's go through each directory and read images within it
+    # prolazak kroz direktorije i citanje slika iz direktorija
     for dir_name in dirs:
 
-        # our subject directories start with letter 's' so
-        # ignore any non-relevant directories if any
+
+        # ignorisu se direktoriji koji ne pocinju slovom s
 
         if not dir_name.startswith("s"):
             continue;
 
-        # ------STEP-2--------
-        # extract label number of subject from dir_name
-        # format of dir name = slabel
-        # , so removing letter 's' from dir_name will give us label
+
+        # uzima se broj za labelu iz naziva direktorija subjekta koji ce se koristiti za odredjivanje iz liste subjects
+        # format imena direktorija je slabel
+
         label = int(dir_name.replace("s", ""))
 
-        # build path of directory containin images for current subject subject
-        # sample subject_dir_path = "training-data/s1"
+
+        # kreiranje putanje direktorija koji sadrzi slike za određeni subjekat
         subject_dir_path = data_folder_path + "/" + dir_name
 
-        # get the images names that are inside the given subject directory
+        # dohvati imena slika koja su u direktoriju
         subject_images_names = os.listdir(subject_dir_path)
 
-        # ------STEP-3--------
-        # go through each image name, read image,
-        # detect face and add face to list of faces
+
+        #prolazak kroz slike, otkrivanje lica i dodavanja u listu lica
         for image_name in subject_images_names:
 
-            # ignore system files like .DS_Store
+            # ignorisanje sistemskih datoteka, u slucaju da se desi da postoji slucajno
             if image_name.startswith("."):
                 continue;
 
-            # build image path
-            # sample image path = training-data/s1/1.pgm
+            #kreiranje putanje za slike
             image_path = subject_dir_path + "/" + image_name
 
-            # read image
+            # citanje slike
             image = cv2.imread(image_path)
 
-            # display an image window to show the image
+            # Prikazati sliku za treniranje
             #cv2.imshow("Training on image...", cv2.resize(image, (400, 500)))
             #cv2.waitKey(100)
 
-            # detect face
+            # detekcija lica
             face, rect = detect_face(image)
 
-            # ------STEP-4--------
-            # for the purpose of this tutorial
-            # we will ignore faces that are not detected
+
+            # Lica koja nisu otkrivena biti ce ignorisana i ispisana kako bi se mogao u buducnosti popraviti DataSet
             if face is not None:
-                # add face to list of faces
+                # dodati lice u listu lica
                 faces.append(face)
-                # add label for this face
+                # dodati labelu za lice u listu labela
                 labels.append(label)
             else:
                 print(image_name)
@@ -190,102 +177,77 @@ def prepare_training_data(data_folder_path):
 #
 # Let's call this function on images of these beautiful celebrities to prepare data for training of our Face Recognizer. Below is a simple code to do that.
 
-# In[5]:
 
-# let's first prepare our training data
-# data will be in two lists of same size
-# one list will contain all the faces
-# and other list will contain respective labels for each face
+
+
+
+# jedna lista sadrzi lica, a druga lista sadrzi listu labela za lica. Obje liste su iste duzine
+# potrebno je pripremiti podatke za treniranje
+
 print("Preparing data...")
 faces, labels = prepare_training_data("../DataSetPOOS/training-data")
 print("Data prepared")
 print(labels)
 
-# print total faces and labels
+# Ukupan broj lica i labela
 print("Total faces: ", len(faces))
 print("Total labels: ", len(labels))
 
-# This was probably the boring part, right? Don't worry, the fun stuff is coming up next. It's time to train our own face recognizer so that once trained it can recognize new faces of the persons it was trained on. Read? Ok then let's train our face recognizer.
 
-# ### Train Face Recognizer
+# ### Treniranje Face Recognizer-a
 
-# As we know, OpenCV comes equipped with three face recognizers.
+# Postoje razlicite vrste Face Recognizera
 #
 # 1. EigenFace Recognizer: This can be created with `cv2.face.createEigenFaceRecognizer()`
 # 2. FisherFace Recognizer: This can be created with `cv2.face.createFisherFaceRecognizer()`
 # 3. Local Binary Patterns Histogram (LBPH): This can be created with `cv2.face.LBPHFisherFaceRecognizer()`
-#
-# I am going to use LBPH face recognizer but you can use any face recognizer of your choice. No matter which of the OpenCV's face recognizer you use the code will remain the same. You just have to change one line, the face recognizer initialization line given below.
+##########################################################################################################
 
-# In[6]:
 
-# create our LBPH face recognizer
+
+# kreiranje LBPH face recognizer-a
 face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 
-# or use EigenFaceRecognizer by replacing above line with
+# ili EigenFaceRecognizer
 #face_recognizer = cv2.face.EigenFaceRecognizer_create()
 
-# or use FisherFaceRecognizer by replacing above line with
+# ili FisherFaceRecognizer
 # face_recognizer = cv2.face.FisherFaceRecognizer_create()
 
+# treniranje face_recognizera
 
-# Now that we have initialized our face recognizer and we also have prepared our training data, it's time to train the face recognizer. We will do that by calling the `train(faces-vector, labels-vector)` method of face recognizer.
-
-# In[7]:
-
-# train our face recognizer of our training faces
-
-#face_recognizer = cv2.face.FisherFaceRecognizer_create()
 face_recognizer.train(faces, np.array(labels))
+
+#export face recognizera na navedenu lokaciju
 face_recognizer.save('../trainner/trainner.yml')
 
-# **Did you notice** that instead of passing `labels` vector directly to face recognizer I am first converting it to **numpy** array? This is because OpenCV expects labels vector to be a `numpy` array.
-#
-# Still not satisfied? Want to see some action? Next step is the real action, I promise!
+# Predikcija ( u ovom kodu koristila se kako bi stekli utisak da li smo dobro izvrsili treniranje 2-p-z
 
-# ### Prediction
 
-# Now comes my favorite part, the prediction part. This is where we actually get to see if our algorithm is actually recognizing our trained subjects's faces or not. We will take two test images of our celeberities, detect faces from each of them and then pass those faces to our trained face recognizer to see if it recognizes them.
-#
-# Below are some utility functions that we will use for drawing bounding box (rectangle) around face and putting celeberity name near the face bounding box.
+#Sljedece dvije funkcije koristene su iz openCV paketa
+# funkcija za crtanje koristeci koordinate, visinu i sirinu
 
-# In[8]:
-
-# function to draw rectangle on image
-# according to given (x, y) coordinates and
-# given width and heigh
 def draw_rectangle(img, rect):
     (x, y, w, h) = rect
     cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
 
-# function to draw text on give image starting from
-# passed (x, y) coordinates.
+# funkcija za ispis teksta
+
 def draw_text(img, text, x, y):
     cv2.putText(img, text, (x, y), cv2.FONT_HERSHEY_PLAIN, 1.5, (0, 255, 0), 2)
 
-
-# First function `draw_rectangle` draws a rectangle on image based on passed rectangle coordinates. It uses OpenCV's built in function `cv2.rectangle(img, topLeftPoint, bottomRightPoint, rgbColor, lineWidth)` to draw rectangle. We will use it to draw a rectangle around the face detected in test image.
-#
-# Second function `draw_text` uses OpenCV's built in function `cv2.putText(img, text, startPoint, font, fontSize, rgbColor, lineWidth)` to draw text on image.
-#
-# Now that we have the drawing functions, we just need to call the face recognizer's `predict(face)` method to test our face recognizer on test images. Following function does the prediction for us.
-
-
-
-# this function recognizes the person in image passed
-# and draws a rectangle around detected face with name of the
-# subject
+# Funkcija vrsi prepoznavanje lica te ispis imena i obiljezavanje lica
 def predict(test_img):
-    # kopija slike kako se ne bi stetio original
+    # kopija slike kako se ne bi ostetio original
     img = test_img.copy()
     # pronalazak lica na slici
     face, rect = detect_face(img)
 
-    # predict the image using our face recognizer
+    # predikcija je uradjena koristenjem face_recognizera
     #FACE_RECOGNIZER URAĐEN SA EXPORTOM .save, I OVU FUNKCIJU CIJELU PREBACITI U DRUGI PY
     label, confidence = face_recognizer.predict(face)
-    # get name of respective label returned by face recognizer
+    # ime se uzima koristenjem labele kao indexa iz niza subjekata
     label_text = subjects[label]
 
     # crtanje kocke oko detektovanog lica
@@ -350,9 +312,7 @@ def spec(ind, mat):
         FP += mat[i][ind]
     return TN/(TN+FP)
 
-
-
-
+#################################
 
 ########
 # Main #
@@ -363,13 +323,7 @@ dirs = os.listdir(test_path)
 images_names = os.listdir(test_path)
 print(images_names)
 slike = []
-
-#Acc brojPogodaka / Total
-
 brojac = 0
-
-
-
 
 
 for image_name in images_names:
@@ -384,6 +338,8 @@ for slika in slike:
     cv2.imshow("Face classified", cv2.resize(slika, (400, 500)))
     cv2.waitKey(0)
 
+
+### Performanse main ###
 
 for k in range(len(val_subjects)):
     if val_subjects[k] != predicted_subjects[k]:

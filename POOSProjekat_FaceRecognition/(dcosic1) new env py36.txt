@@ -1,0 +1,7 @@
+To activate this environment, use:
+# > activate py36
+#
+# To deactivate an active environment, use:
+# > deactivate
+#
+# * for power-users using bash, you must source
