@@ -10,16 +10,15 @@ from sklearn.metrics import confusion_matrix
 # |-------------- s1
 # |               |-- 1.jpg
 # |               |-- ...
-# |               |-- 12.jpg
+# |               |-- 20.jpg
 # |-------------- s2
 # |               |-- 1.jpg
 # |               |-- ...
-# |               |-- 12.jpg
+# |               |-- 20.jpg
 # ```
 #
 # Folder_`test-data`_ sluzi za testiranje recognizera kasnije nakon treniranja
 
-# As OpenCV face recognizer accepts labels as integers so we need to define a mapping between integer labels and persons actual names so below I am defining a mapping of persons integer labels and their respective names.
 
 
 
@@ -57,11 +56,7 @@ val_subjects = ["Angelina Jolie", "Other", "Angelina Jolie", "Other", "Robert Do
 #
 #
 # Preparing data step can be further divided into following sub-steps.
-#
-# 1. Read all the folder names of subjects/persons provided in training data folder. So for example, in this tutorial we have folder names: `s1, s2`.
-# 2. For each subject, extract label number. **Do you remember that our folders have a special naming convention?** Folder names follow the format `sLabel` where `Label` is an integer representing the label we have assigned to that subject. So for example, folder name `s1` means that the subject has label 1, s2 means subject label is 2 and so on. The label extracted in this step is assigned to each face detected in the next step.
-# 3. Read all the images of the subject, detect face from each image.
-# 4. Add each face to faces vector with corresponding subject label (extracted in above step) added to labels vector.
+
 
 # Detekcija lica korištenjem OpenCV-a
 
@@ -161,26 +156,6 @@ def prepare_training_data(data_folder_path):
     return faces, labels
 
 
-# I have defined a function that takes the path, where training subjects' folders are stored, as parameter. This function follows the same 4 prepare data substeps mentioned above.
-#
-# **(step-1)** On _line 8_ I am using `os.listdir` method to read names of all folders stored on path passed to function as parameter. On _line 10-13_ I am defining labels and faces vectors.
-#
-# **(step-2)** After that I traverse through all subjects' folder names and from each subject's folder name on _line 27_ I am extracting the label information. As folder names follow the `sLabel` naming convention so removing the  letter `s` from folder name will give us the label assigned to that subject.
-#
-# **(step-3)** On _line 34_, I read all the images names of of the current subject being traversed and on _line 39-66_ I traverse those images one by one. On _line 53-54_ I am using OpenCV's `imshow(window_title, image)` along with OpenCV's `waitKey(interval)` method to display the current image being traveresed. The `waitKey(interval)` method pauses the code flow for the given interval (milliseconds), I am using it with 100ms interval so that we can view the image window for 100ms. On _line 57_, I detect face from the current image being traversed.
-#
-# **(step-4)** On _line 62-66_, I add the detected face and label to their respective vectors.
-
-# But a function can't do anything unless we call it on some data that it has to prepare, right? Don't worry, I have got data of two beautiful and famous celebrities. I am sure you will recognize them!
-#
-# ![training-data](visualization/tom-shahrukh.png)
-#
-# Let's call this function on images of these beautiful celebrities to prepare data for training of our Face Recognizer. Below is a simple code to do that.
-
-
-
-
-
 # jedna lista sadrzi lica, a druga lista sadrzi listu labela za lica. Obje liste su iste duzine
 # potrebno je pripremiti podatke za treniranje
 
@@ -209,7 +184,7 @@ print("Total labels: ", len(labels))
 face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 # ili EigenFaceRecognizer
-#face_recognizer = cv2.face.EigenFaceRecognizer_create()
+# face_recognizer = cv2.face.EigenFaceRecognizer_create()
 
 # ili FisherFaceRecognizer
 # face_recognizer = cv2.face.FisherFaceRecognizer_create()
@@ -218,13 +193,13 @@ face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 face_recognizer.train(faces, np.array(labels))
 
-#export face recognizera na navedenu lokaciju
+# export face recognizera na navedenu lokaciju
 face_recognizer.write('../trainner/trainner.yml')
 
 # Predikcija ( u ovom kodu koristila se kako bi stekli utisak da li smo dobro izvrsili treniranje 2-p-z
 
 
-#Sljedece dvije funkcije koristene su iz openCV paketa
+# Sljedece dvije funkcije koristene su iz openCV paketa
 # funkcija za crtanje koristeci koordinate, visinu i sirinu
 
 def draw_rectangle(img, rect):
@@ -245,7 +220,7 @@ def predict(test_img):
     face, rect = detect_face(img)
 
     # predikcija je uradjena koristenjem face_recognizera
-    #FACE_RECOGNIZER URAĐEN SA EXPORTOM .save, I OVU FUNKCIJU CIJELU PREBACITI U DRUGI PY
+    # FACE_RECOGNIZER URAĐEN SA EXPORTOM .write, I OVU FUNKCIJU CIJELU PREBACITI U DRUGI PY
     label, confidence = face_recognizer.predict(face)
     # ime se uzima koristenjem labele kao indexa iz niza subjekata
     label_text = subjects[label]
@@ -263,6 +238,7 @@ def predict(test_img):
 
 print("Predicting images...")
 
+# rucno testiranje
 # load test images (testiranje rucno)
 # test_img1 = cv2.imread("../test/Robert-Downey-Jr-120109-Sherlock-Holmes-5.jpg")
 # test_img2 = cv2.imread("../test/51I5N-2UzhL.jpg")
@@ -354,10 +330,10 @@ def main(test_path):
 
 
     confusion = confusion_matrix(val_subjects, predicted_subjects)
-    #print(confusion)
+    # print(confusion)
     for i in range(len(confusion)):
-        print("Class " + str(i) + ": ", end=" ")
-        print("sensitivity: " + str(sens(i, confusion)) + ", specificity: " + str(spec(i, confusion)) + ", accuracy: " + str(acc(i, confusion)))
+        print("CLASS " + str(i) + "--------", end=" ")
+        print("SENSITIVITY: " + str(sens(i, confusion)) + ", SPECIFICITY: " + str(spec(i, confusion)) + ", ACCURACY: " + str(acc(i, confusion)))
 
 
     print("Prediction complete")
