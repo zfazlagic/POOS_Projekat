@@ -2,11 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc352dff-d8cb-4762-9180-bbc79702cba1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ImoportYMLFile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/POOS_Projekat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/POOS_Projekat.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/PoboljsanjeTreniranje.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/PrimjenaPoboljsanja.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/blur.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/blur.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editBrightness.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editBrightness.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editContrast.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editContrast.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editHistogram.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editHistogram.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/unsharp_download.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/unsharp_download.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ImageTransformations.py" beforeDir="false" afterPath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ImageTransformations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ImoportYMLFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ImoportYMLFile.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ProjektniZadatak2.py" beforeDir="false" afterPath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ProjektniZadatak2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/result.png" beforeDir="false" afterPath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/result.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/trainner/trainner.yml" beforeDir="false" afterPath="$PROJECT_DIR$/POOSProjekat_FaceRecognition/trainner/trainner.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +26,7 @@
     <session id="1979654753">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
@@ -27,35 +35,40 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="2" />
+          <entry key="JPG" value="1" />
+          <entry key="jpeg" value="2" />
+          <entry key="jpg" value="19" />
+          <entry key="png" value="2" />
+          <entry key="py" value="13" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="Image" value="24" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="2" />
+          <entry key="Python" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="6" />
+          <entry key="py" value="802" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="6" />
+          <entry key="Python" value="802" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ProjektniZadatak2.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ImoportYMLFile.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="1071">
+              <caret line="63" column="35" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -63,11 +76,47 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ImoportYMLFile.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/PoboljsanjeTreniranje.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-68">
-              <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ImageTransformations.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="96" column="47" selection-start-line="96" selection-start-column="6" selection-end-line="96" selection-end-column="47" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/PrimjenaPoboljsanja.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="141">
+              <caret line="9" column="64" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ProjektniZadatak2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="339" column="22" lean-forward="true" selection-start-line="321" selection-end-line="339" selection-end-column="22" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -92,6 +141,8 @@
       <find>points</find>
       <find>dir</find>
       <find>make</find>
+      <find>subj</find>
+      <find>training-data</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -102,14 +153,18 @@
       <list>
         <option value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Anotacije/DataSetPOOS.json" />
         <option value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/MaskOnImage.py" />
-        <option value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ImageTransformations.py" />
         <option value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/Maske.py" />
+        <option value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ImageTransformations.py" />
         <option value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ImoportYMLFile.py" />
+        <option value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/PoboljsanjeTestnihSlika.py" />
+        <option value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/PoboljsanjeTreniranje.py" />
+        <option value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/PrimjenaPoboljsanja.py" />
         <option value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ProjektniZadatak2.py" />
+        <option value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/DescriptorTestnihSlika.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1350" />
@@ -185,7 +240,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.ImoportYMLFile">
+  <component name="RunManager" selected="Python.ProjektniZadatak2">
     <configuration name="ImageTransformations" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="POOS_Projekat" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -228,7 +283,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="MaskOnImage" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="PoboljsanjeTreniranje" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="POOS_Projekat" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -240,7 +295,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/MaskOnImage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/PoboljsanjeTreniranje.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -249,7 +304,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Maske" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="PrimjenaPoboljsanja" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="POOS_Projekat" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -261,7 +316,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/Maske.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/PrimjenaPoboljsanja.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -293,18 +348,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.ImageTransformations" />
-      <item itemvalue="Python.Maske" />
-      <item itemvalue="Python.MaskOnImage" />
       <item itemvalue="Python.ProjektniZadatak2" />
       <item itemvalue="Python.ImoportYMLFile" />
+      <item itemvalue="Python.PrimjenaPoboljsanja" />
+      <item itemvalue="Python.PoboljsanjeTreniranje" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.ImoportYMLFile" />
-        <item itemvalue="Python.ImageTransformations" />
-        <item itemvalue="Python.MaskOnImage" />
         <item itemvalue="Python.ProjektniZadatak2" />
-        <item itemvalue="Python.Maske" />
+        <item itemvalue="Python.ImoportYMLFile" />
+        <item itemvalue="Python.PrimjenaPoboljsanja" />
+        <item itemvalue="Python.PoboljsanjeTreniranje" />
+        <item itemvalue="Python.ImageTransformations" />
       </list>
     </recent_temporary>
   </component>
@@ -322,15 +377,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.24917382" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.24917382" />
       <window_info id="Structure" order="1" sideWeight="0.5021097" side_tool="true" weight="0.24983476" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3295082" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29461756" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.29461756" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -367,28 +421,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Images/2/['Other'].jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Images/2/['Angelina Jolie'].jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Images/0/['Robert Downey Jr.'].jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Images/2/['Robert Downey Jr.'].jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Maske/2/['Angelina Jolie'].jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Maske/2/[].jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Maske/2/R.jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Images/0.jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Images/2.jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Images/4.jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Images/60.jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Images/59.jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Images/56.jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Images/57.jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Images/58.jpg" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/urllib/request.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/skimage/util/dtype.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/skimage/exposure/exposure.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/skimage/io/_io.py" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/unsharp_download.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Maske/Robert Downey Jr/1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -399,18 +431,6 @@
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Images/Robert Downey Jr/2.jpg" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editBrightness.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editContrast.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editHistogram.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/blur.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Maske/Angelina Jolie/46.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -444,21 +464,7 @@
     <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Maske/Angelina Jolie/53.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ImageTransformations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="79" column="55" selection-start-line="79" selection-start-column="55" selection-end-line="79" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/skimage/io/manage_plugins.py" />
-    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/Maske.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="61" column="48" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/Anotacije/DataSetPOOSFR.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -476,10 +482,135 @@
     <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/(dcosic1) new env py36.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/PIL/Image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="2608" selection-start-line="2608" selection-end-line="2608" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/test.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/PIL/ImageEnhance.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editBrightness.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/blur.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editHistogram.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/training-data/s1/11.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/training-data/s1/12.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/editContrast.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/result.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/EditovaneSlike/unsharp_download.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/Maske.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/PoboljsanjeTestnihSlika.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/TestPoboljsanje/test2.jpeg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/TestPoboljsanje/test9.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/TestPoboljsanje/test4.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/TestPoboljsanje/test3.JPG">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/TestPoboljsanje/test1.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/PoboljsaneSlike/s0/24.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/PoboljsaneSlike/s0/23.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/PoboljsaneSlike/s0/20.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/DataSetPOOS/PoboljsaneSlike/s0/21.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ImageTransformations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="96" column="47" selection-start-line="96" selection-start-column="6" selection-end-line="96" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/PrimjenaPoboljsanja.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="9" column="64" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ProjektniZadatak2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="277">
+          <caret line="339" column="22" lean-forward="true" selection-start-line="321" selection-end-line="339" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/PoboljsanjeTreniranje.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/DescriptorTestnihSlika.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2414">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -488,8 +619,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/POOSProjekat_FaceRecognition/Klase/ImoportYMLFile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+        <state relative-caret-position="1071">
+          <caret line="63" column="35" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

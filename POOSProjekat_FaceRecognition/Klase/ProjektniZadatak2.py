@@ -185,7 +185,7 @@ def prepare_training_data(data_folder_path):
 # potrebno je pripremiti podatke za treniranje
 
 print("Preparing data...")
-faces, labels = prepare_training_data("../DataSetPOOS/training-data")
+faces, labels = prepare_training_data("../DataSetPOOS/PoboljsaneSlike")
 print("Data prepared")
 print(labels)
 
@@ -319,50 +319,51 @@ def spec(ind, mat):
 ########
 
 test_path = "../test/"
-dirs = os.listdir(test_path)
-images_names = os.listdir(test_path)
-print(images_names)
-slike = []
-brojac = 0
+def main(test_path):
+    dirs = os.listdir(test_path)
+    images_names = os.listdir(test_path)
+    print(images_names)
+    slike = []
+    brojac = 0
 
 
-for image_name in images_names:
-    image_path = test_path + "/" + image_name
-    image = cv2.imread(image_path)
-    predicted_img = predict(image)
-    slike.append(predicted_img)
-    #cv2.imshow(subjects[0], cv2.resize(predicted_img, (400, 500)))
-    #cv2.waitKey(5000)
+    for image_name in images_names:
+        image_path = test_path + "/" + image_name
+        image = cv2.imread(image_path)
+        predicted_img = predict(image)
+        slike.append(predicted_img)
+        #cv2.imshow(subjects[0], cv2.resize(predicted_img, (400, 500)))
+        #cv2.waitKey(5000)
 
-for slika in slike:
-    cv2.imshow("Face classified", cv2.resize(slika, (400, 500)))
-    cv2.waitKey(0)
-
-
-### Performanse main ###
-
-for k in range(len(val_subjects)):
-    if val_subjects[k] != predicted_subjects[k]:
-        brojac+=1
+    for slika in slike:
+        cv2.imshow("Face classified", cv2.resize(slika, (400, 500)))
+        cv2.waitKey(0)
 
 
-acc_ukupno = (len(predicted_subjects) - brojac) / len(val_subjects)
+    ### Performanse main ###
 
-predicted = []
-print(predicted_subjects)
-
-
-confusion = confusion_matrix(val_subjects, predicted_subjects)
-#print(confusion)
-for i in range(len(confusion)):
-    print("Class " + str(i) + ": ", end=" ")
-    print("sensitivity: " + str(sens(i, confusion)) + ", specificity: " + str(spec(i, confusion)) + ", accuracy: " + str(acc(i, confusion)))
+    for k in range(len(val_subjects)):
+        if val_subjects[k] != predicted_subjects[k]:
+            brojac+=1
 
 
-print("Prediction complete")
+    acc_ukupno = (len(predicted_subjects) - brojac) / len(val_subjects)
+
+    predicted = []
+    print(predicted_subjects)
 
 
+    confusion = confusion_matrix(val_subjects, predicted_subjects)
+    #print(confusion)
+    for i in range(len(confusion)):
+        print("Class " + str(i) + ": ", end=" ")
+        print("sensitivity: " + str(sens(i, confusion)) + ", specificity: " + str(spec(i, confusion)) + ", accuracy: " + str(acc(i, confusion)))
 
+
+    print("Prediction complete")
+
+
+main(test_path)
 
 #cv2.waitKey(0)
 #cv2.destroyAllWindows()

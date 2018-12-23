@@ -55,17 +55,21 @@ def importYML(test_img):
     cv2.destroyAllWindows()
     return img
 
-path = "../test/"
-dirs = os.listdir(path)
-images_names = os.listdir(path)
-print(images_names)
-slike = []
-for image_name in images_names:
-    image_path = path + "/" + image_name
-    image = cv2.imread(image_path)
-    predicted_img = importYML(image)
-    slike.append(predicted_img)
 
-for slika in slike:
-    cv2.imshow("Face classified", cv2.resize(slika, (400, 500)))
-    cv2.waitKey(0)
+def main(path):
+    dirs = os.listdir(path)
+    images_names = os.listdir(path)
+    print(images_names)
+    slike = []
+    for image_name in images_names:
+        image_path = path + "/" + image_name
+        image = cv2.imread(image_path)
+        predicted_img = importYML(image)
+        slike.append(predicted_img)
+
+    for slika in slike:
+        cv2.imshow("Face classified", cv2.resize(slika, (400, 500)))
+        cv2.waitKey(0)
+
+path = "../test/"
+main(path)

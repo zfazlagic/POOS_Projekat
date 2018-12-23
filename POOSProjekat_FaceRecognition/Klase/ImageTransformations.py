@@ -4,26 +4,27 @@ from PIL import Image, ImageEnhance
 
 #Ukoliko bude potrebno funkcija za konvertovanje slike u boji u B&W
 
-def convertToBlackAndWhite():
-    image_file = Image.open("test.png") # open colour image
+def convertToBlackAndWhite(path):
+    image_file = Image.open(path) # open colour image
     image_file = image_file.convert('1') # convert image to black and white
-    image_file.save('result.png')
+    #image_file.save('result.png')
     return image_file
 
 
 # Metoda koja se koristi za maskiranje neostrina
 
-def maskiranje_neostrina():
-    image = cv2.imread(r"..\DataSetPOOS\Images\Angelina Jolie\41.jpg")
+def maskiranje_neostrina(path):
+    image = cv2.imread(path)
     gaussian_3 = cv2.GaussianBlur(image, (9,9), 10.0)
     unsharp_image = cv2.addWeighted(image, 1.5, gaussian_3, -0.5, 0, image)
-    cv2.imwrite(r"..\DataSetPOOS\EditovaneSlike\unsharp_download.jpg", unsharp_image)
+    #cv2.imwrite(r"..\DataSetPOOS\EditovaneSlike\unsharp_download.jpg", unsharp_image)
     return unsharp_image
 
 # Metoda za poboljsavanje svjetlosti na slici
 
-def increase_brightness(value=30):
-    img = cv2.imread(r"..\DataSetPOOS\Images\Other\21.jpg");
+def increase_brightness(path):
+    value=30
+    img = cv2.imread(path)
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     h, s, v = cv2.split(hsv)
 
@@ -33,14 +34,14 @@ def increase_brightness(value=30):
 
     final_hsv = cv2.merge((h, s, v))
     img = cv2.cvtColor(final_hsv, cv2.COLOR_HSV2BGR)
-    cv2.imwrite('../DataSetPOOS/EditovaneSlike/editBrightness.jpg', img)
+    #cv2.imwrite('../DataSetPOOS/EditovaneSlike/editBrightness.jpg', img)
     return img
 
 #Poboljsavanje kontrasta i ujednacaavnje histograma
 
-def clahe():
+def clahe(path):
 #-----Ucitavanje slike-----------------------------------------------------
-    img = cv2.imread(r"..\DataSetPOOS\Images\Other\24.jpg", 1)
+    img = cv2.imread(path, 1)
     cv2.imshow("img", img)
 
 #-----Konverzija slike u LAB Color model-----------------------------------
@@ -65,36 +66,40 @@ def clahe():
 #-----Konvertovanje slike iz LAB Color modela u RGB model--------------------
     final = cv2.cvtColor(limg, cv2.COLOR_LAB2BGR)
     cv2.imshow('final', final)
-    cv2.imwrite('../DataSetPOOS/EditovaneSlike/editHistogram.jpg', final)
+    #cv2.imwrite('../DataSetPOOS/EditovaneSlike/editHistogram.jpg', final)
     return final
 
 
 #Uklanjanje šuma
 
-def image_denoise():
+def image_denoise(path):
 
-    img = cv2.imread(r"..\DataSetPOOS\Images\Other\22.jpg")
+    img = cv2.imread(path)
 
-    blur = cv2.bilateralFilter(img, 10, 75, 75)
+    blur = cv2.bilateralFilter(img, 5, 15, 15)
 
-    cv2.imwrite('../DataSetPOOS/EditovaneSlike/blur.jpg', blur)
-    return
+    #cv2.imwrite('../DataSetPOOS/EditovaneSlike/blur.jpg', blur)
+    return blur
 
 # Poboljšavanje kontrasta
 
-def edit_contrast():
-    image = Image.open(r"..\DataSetPOOS\Images\Other\28.jpg")
-    scale_value = 2.5
+def edit_contrast(path):
+    image = Image.open(path)
+    scale_value = 1
 
     image = ImageEnhance.Contrast(image).enhance(scale_value)
-    image.save('../DataSetPOOS/EditovaneSlike/editContrast.jpg')
-    return
+    #image.save('../DataSetPOOS/EditovaneSlike/editContrast.jpg')
+    return image
 
 
 # Pozivanje funkcija
-
-increase_brightness()
-maskiranje_neostrina()
-edit_contrast()
-image_denoise()
-clahe()
+############################################
+#path=r"..\DataSetPOOS\training-data\s0\21.jpg"
+#increase_brightness()
+#image=maskiranje_neostrina(path)
+#cv2.imwrite(r"..\DataSetPOOS\EditovaneSlike\unsharp_download.jpg",image)
+#edit_contrast()
+#image_denoise()
+#clahe()
+#convertToBlackAndWhite(path)
+#########################################
