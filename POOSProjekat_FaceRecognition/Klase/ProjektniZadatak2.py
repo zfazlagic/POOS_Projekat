@@ -219,7 +219,7 @@ face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 face_recognizer.train(faces, np.array(labels))
 
 #export face recognizera na navedenu lokaciju
-face_recognizer.save('../trainner/trainner.yml')
+face_recognizer.write('../trainner/trainner.yml')
 
 # Predikcija ( u ovom kodu koristila se kako bi stekli utisak da li smo dobro izvrsili treniranje 2-p-z
 
